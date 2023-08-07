@@ -11,23 +11,22 @@
 
 jest.useFakeTimers({ legacyFakeTimers: true });
 
-  describe('Mock fn called after delay', () => {
-    beforeEach(() => {
-      jest.restoreAllMocks();
-    });
-  
-    it('calls the function after a delay, and not before', () => {
-      const delayedFn = jest.fn();
-  
-      setTimeout(() => {
-        delayedFn();
-      }, 500);
-  
-      jest.advanceTimersByTime(499);
-      expect(delayedFn).not.toBeCalled();
-  
-      jest.advanceTimersByTime(1);
-      expect(delayedFn).toBeCalled();
-    });
+describe("Mock fn called after delay", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
   });
-  
+
+  it("calls the function after a delay, and not before", () => {
+    const delayedFn = jest.fn();
+
+    setTimeout(() => {
+      delayedFn();
+    }, 500);
+
+    jest.advanceTimersByTime(499);
+    expect(delayedFn).not.toBeCalled();
+
+    jest.advanceTimersByTime(1);
+    expect(delayedFn).toBeCalled();
+  });
+});
